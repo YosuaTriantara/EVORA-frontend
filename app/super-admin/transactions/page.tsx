@@ -223,15 +223,9 @@ export default function SuperAdminTransactionsPage() {
                 ) : (
                   filteredTransactions.map((transaction) => (
                     <tr key={transaction.id} className="hover:bg-slate-50">
-                      <td className="px-4 py-3 text-sm font-medium">{transaction.team?.team_name || "-"}</td>
-                      <td className="px-4 py-3 text-sm text-slate-600">{transaction.team?.institution_name || "-"}</td>
+                      <td className="px-4 py-3 text-sm font-medium">{transaction.meta_data?.team_id || "-"}</td>
                       <td className="px-4 py-3 text-sm">
                         Rp {transaction.amount.toLocaleString("id-ID")}
-                      </td>
-                      <td className="px-4 py-3">
-                        <Badge className={STATUS_CONFIG[transaction.status].className}>
-                          {STATUS_CONFIG[transaction.status].label}
-                        </Badge>
                       </td>
                       <td className="px-4 py-3 text-sm text-slate-600">
                         {new Date(transaction.created_at).toLocaleDateString("id-ID")}
