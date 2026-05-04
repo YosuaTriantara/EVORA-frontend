@@ -329,7 +329,6 @@ export interface TransactionRead {
     event_id?: string;
     category_id?: string;
   } | null;
-  paid_at: string | null;
   created_at: string;
   updated_at: string | null;
 }

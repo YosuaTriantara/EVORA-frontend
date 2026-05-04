@@ -265,6 +265,7 @@ type EventTransactionItem = TransactionRead & {
   user_email?: string;
   payment_proof_url?: string | null;
   team_name?: string;
+  team_id?: string;
   category_name?: string;
 };
 
@@ -1490,24 +1491,12 @@ function TransactionsTab({
       ? undefined
       : window.prompt("Masukkan catatan penolakan (minimal 10 karakter):", "") ?? "";
 
-    if (!isApproved && admin_note.trim().length < 10) {
-      addToast("error", "Catatan penolakan minimal 10 karakter.");
-      return;
-    }
-
     setWorkingId(item.id);
     try {
       const res = await verifyTransaction(item.id, {
         is_approved: isApproved,
         ...(admin_note ? { admin_note } : {}),
       });
-      setTransactions((prev) =>
-        prev.map((row) =>
-          row.id === item.id
-            ? { ...row, status: res.new_status, admin_note: admin_note || row.admin_note }
-            : row
-        )
-      );
       addToast("success", res.message);
     } catch (ex: unknown) {
       addToast("error", ex instanceof Error ? ex.message : "Gagal memverifikasi transaksi.");
@@ -1517,7 +1506,7 @@ function TransactionsTab({
   }
 
   function getTeamState(item: EventTransactionItem) {
-    const teamId = item.team_id || item.meta_data?.team_id;
+    const teamId = item.team_id || item.meta_data?.team_id || "-";
     return teamId ? teamMap[teamId] : undefined;
   }
 
@@ -1613,11 +1602,6 @@ function TransactionsTab({
                   {team && (
                     <p className="mt-1 text-[11px] text-slate-400">
                       Status tim saat ini: {TEAM_STATUS_META[team.status].label}
-                    </p>
-                  )}
-                  {item.admin_note && (
-                    <p className="mt-2 rounded-lg bg-red-50 px-3 py-2 text-xs text-red-700">
-                      Catatan admin: {item.admin_note}
                     </p>
                   )}
                 </div>
