@@ -99,9 +99,9 @@ export default function SuperAdminTransactionsPage() {
   const filteredTransactions = transactions.filter((t) => {
     const matchesSearch =
       !searchQuery ||
-      t.team?.team_name?.toLowerCase().includes(searchQuery.toLowerCase()) || 
-      t.team?.institution_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      t.id.toLowerCase().includes(searchQuery.toLowerCase());
+      t.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      t.user_email?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      t.meta_data?.team_id?.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesSearch;
   });
 
