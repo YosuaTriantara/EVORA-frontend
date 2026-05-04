@@ -53,7 +53,7 @@ export async function getTeamMembers(teamId: string): Promise<z.infer<typeof Tea
 // Update team status request schema - aligned with API_SPECIFICATION.md
 // Allowed values: PENDING_PAYMENT, PENDING_VERIFICATION, REGISTERED, CANCELLED, DISQUALIFIED
 const UpdateTeamStatusSchema = z.object({
-  status: z.enum(["PENDING_PAYMENT", "PENDING_VERIFICATION", "REGISTERED", "CANCELLED", "DISQUALIFIED"]),
+  status: z.enum(["PENDING_PAYMENT", "PENDING_VERIFICATION", "REGISTERED", "CANCELLED", "DISQUALIFIED", "REJECTED"]),
   admin_note: z.string().optional(),
 });
 
