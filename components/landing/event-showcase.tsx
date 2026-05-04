@@ -1,99 +1,92 @@
 import Link from "next/link";
 import { getEvents } from "@/services/event-service";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { CalendarDays, MapPin, ArrowUpRight } from "lucide-react";
 
 export async function EventShowcase() {
   const events = await getEvents();
 
   return (
-    <section id="events" className="py-10 bg-slate-50">
+    <section id="events" className="py-16 bg-slate-50">
       <div className="container mx-auto px-5 sm:px-6 lg:px-8">
-        {/* Header Minimalis */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12">
+
+        {/* Header */}
+        <div className="flex flex-col md:flex-row justify-between items-end mb-14">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">
-              Event Sedang <span className="text-red-900">Berlangsung</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight leading-tight">
+              Event Sedang <br />
+              <span className="text-red-900">Berlangsung</span>
             </h2>
-            <p className="text-slate-600 max-w-xl text-lg">
-              Daftarkan pasukanmu di kompetisi yang sedang berlangsung. Jangan lewatkan kesempatan untuk menunjukkan kemampuan terbaikmu dan raih kemenangan!
-            </p>
           </div>
 
-          <Button
-            variant="ghost"
-            className="hidden md:flex text-red-900 font-bold hover:bg-red-50 hover:text-red-800"
-            asChild
+          <Link
+            href="/events"
+            className="hidden md:inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-red-900 transition-colors duration-200 mt-4 md:mt-0"
           >
-            <Link href="/events">
-              Jelajahi Semua Event <ArrowUpRight className="ml-2 w-4 h-4" />
-            </Link>
-          </Button>
+            Jelajahi Semua Event
+            <ArrowUpRight className="w-4 h-4" />
+          </Link>
         </div>
 
         {/* Grid Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {events.map((event) => (
-            <Card
+            <Link
               key={event.id}
-              className="group border-0 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 bg-white rounded-2xl overflow-hidden flex flex-col h-full"
+              href={`/events/${event.slug}`}
+              className="group block bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-red-200 hover:shadow-lg transition-all duration-300"
             >
-              {/* Image Area */}
-              <div className="relative aspect-[4/3] overflow-hidden">
+              {/* Image */}
+              <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
                 <img
                   src={event.profil_url ?? event.banner_url ?? ""}
                   alt={event.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
 
-              {/* Content Area */}
-              <CardContent className="p-6 flex-1 flex flex-col">
-                <div className="mb-2">
-                  <p className="text-xs font-bold text-red-900 uppercase tracking-wider mb-1">
-                    {event.organizer}
-                  </p>
-                  <h3 className="text-xl font-bold text-slate-900 leading-tight group-hover:text-red-900 transition-colors">
-                    {event.title}
-                  </h3>
-                </div>
+              {/* Content */}
+              <div className="p-5">
+                <p className="text-[11px] font-bold text-red-800 uppercase tracking-widest mb-1">
+                  {event.organizer}
+                </p>
+                <h3 className="text-base font-bold text-slate-900 leading-snug mb-4 group-hover:text-red-900 transition-colors duration-200">
+                  {event.title}
+                </h3>
 
-                <div className="mt-auto space-y-3 pt-4 border-t border-slate-100">
-                  <div className="flex items-center text-sm text-slate-500 font-medium">
-                    <CalendarDays className="w-4 h-4 mr-2 text-slate-400" />
-                    {event.event_date_start} - {event.event_date_end}
+                <div className="space-y-1.5 text-sm text-slate-500">
+                  <div className="flex items-center gap-2">
+                    <CalendarDays className="w-3.5 h-3.5 shrink-0 text-slate-400" />
+                    <span>{event.event_date_start} — {event.event_date_end}</span>
                   </div>
-                  <div className="flex items-center text-sm text-slate-500 font-medium">
-                    <MapPin className="w-4 h-4 mr-2 text-slate-400" />
-                    {event.location ?? ""}
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-3.5 h-3.5 shrink-0 text-slate-400" />
+                    <span>{event.location ?? "–"}</span>
                   </div>
                 </div>
-              </CardContent>
 
-              <CardFooter className="p-6 pt-0">
-                <Button
-                  asChild
-                  className="w-full bg-slate-900 text-white font-bold h-12 rounded-xl group-hover:bg-red-900 transition-colors"
-                >
-                  <Link href={`/events/${event.slug}`}>Daftar Sekarang</Link>
-                </Button>
-              </CardFooter>
-            </Card>
+                {/* CTA inline */}
+                <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
+                  <span className="text-sm font-semibold text-slate-900 group-hover:text-red-900 transition-colors duration-200">
+                    Daftar Sekarang
+                  </span>
+                  <span className="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-red-900 flex items-center justify-center transition-colors duration-200">
+                    <ArrowUpRight className="w-4 h-4 text-slate-600 group-hover:text-white transition-colors duration-200" />
+                  </span>
+                </div>
+              </div>
+            </Link>
           ))}
         </div>
 
-        {/* Mobile Button */}
+        {/* Mobile CTA */}
         <div className="mt-8 md:hidden text-center">
-          <Button
-            variant="outline"
-            className="w-full rounded-xl h-12 border-slate-300"
-            asChild
+          <Link
+            href="/events"
+            className="inline-flex items-center justify-center w-full h-12 rounded-xl border border-slate-200 text-sm font-semibold text-slate-700 hover:border-red-900 hover:text-red-900 transition-colors duration-200"
           >
-            <Link href="/events">Jelajahi Semua Event</Link>
-          </Button>
+            Jelajahi Semua Event
+          </Link>
         </div>
       </div>
     </section>
