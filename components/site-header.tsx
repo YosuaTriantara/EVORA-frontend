@@ -29,7 +29,7 @@ export function SiteHeader() {
 
   return (
     <header className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
-      <div className="container mx-auto px-4 h-14 flex justify-between items-center">
+      <div className="container mx-auto h-14 px-5 sm:px-6 lg:px-8 flex justify-between items-center">
         {/* LOGO */}
         <Link href="/" className="flex items-center gap-2 group">
           <img

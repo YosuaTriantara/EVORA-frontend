@@ -15,7 +15,7 @@ export async function VotingTeaser() {
 
   return (
     <section id="voting" className="py-10 bg-slate-50 border-b border-slate-100">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-5 sm:px-6 lg:px-8">
         {/* Header Section - Minimalis & Elegan */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
           <div className="max-w-2xl">

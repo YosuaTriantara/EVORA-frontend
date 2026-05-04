@@ -12,7 +12,7 @@ import {
 export function BentoFeatures() {
   return (
     <section id="features" className="py-10 md:py-16 bg-slate-50">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-5 sm:px-6 lg:px-8">
         
         {/* HEADER */}
         <div className="text-center max-w-3xl mx-auto mb-16">

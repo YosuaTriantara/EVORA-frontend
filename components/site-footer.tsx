@@ -4,7 +4,7 @@ import { Instagram, Linkedin, Github } from "lucide-react";
 export function SiteFooter() {
   return (
     <footer className="bg-slate-950 text-slate-300 py-10 border-t border-slate-800">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-5 sm:px-6 lg:px-8">
 
         {/* TOP: Brand & Short Info */}
         <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-8 mb-8">

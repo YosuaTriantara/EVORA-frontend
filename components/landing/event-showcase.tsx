@@ -10,7 +10,7 @@ export async function EventShowcase() {
 
   return (
     <section id="events" className="py-10 bg-slate-50">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-5 sm:px-6 lg:px-8">
         {/* Header Minimalis */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-12">
           <div>

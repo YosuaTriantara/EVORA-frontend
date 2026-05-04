@@ -14,11 +14,11 @@ import { VotingTeaser } from "@/components/landing/voting-teaser";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-slate-50 flex flex-col overflow-x-hidden">
       
       <SiteHeader />
 
-      <main>
+      <main className="w-full overflow-x-hidden">
         <HeroSection />
         <AboutSection />
         <BentoFeatures />
@@ -26,7 +26,7 @@ export default function LandingPage() {
         <VotingTeaser />
 
         <section className="py-12 bg-slate-50 text-center border-t border-slate-100">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto max-w-4xl px-5 sm:px-6 lg:px-8">
             <h2 className="text-3xl md:text-5xl font-bold mb-6 text-slate-900 tracking-tight">
               Siap Mengubah Cara Anda Mengelola Kompetisi?
             </h2>

@@ -6,7 +6,7 @@ export function HeroSection() {
         <div className="w-[600px] h-[600px] bg-red-50 rounded-full opacity-40 blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col items-center text-center max-w-2xl mx-auto">
 
           <div className="flex flex-col items-center gap-3 mb-8">

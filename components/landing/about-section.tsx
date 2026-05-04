@@ -5,7 +5,7 @@ export function AboutSection() {
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
         {/* PERBAIKAN 2: Flex Column di mobile, Row di Desktop. Gap dikurangi. */}
         <div className="flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-16">
           
