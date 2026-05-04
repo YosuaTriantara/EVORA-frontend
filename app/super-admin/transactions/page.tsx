@@ -71,10 +71,10 @@ export default function SuperAdminTransactionsPage() {
   const handleExportCSV = () => {
     const data = filteredTransactions.map((t) => ({
       id: t.id,
-      team: t.team?.team_name || "-",
-      institution: t.team?.institution_name || "-",
-      amount: t.amount,
-      status: t.status,
+      team: t.meta_data?.team_id || "-",
+      institution: "-",
+      amount: t.amount || 0,
+      status: t.status || "-",
       created_at: t.created_at,
       verified_by: t.verified_by || "-",
     }));
@@ -99,7 +99,7 @@ export default function SuperAdminTransactionsPage() {
   const filteredTransactions = transactions.filter((t) => {
     const matchesSearch =
       !searchQuery ||
-      t.team?.team_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      t.team?.team_name?.toLowerCase().includes(searchQuery.toLowerCase()) || 
       t.team?.institution_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       t.id.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesSearch;
