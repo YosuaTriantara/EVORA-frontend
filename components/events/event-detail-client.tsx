@@ -1,5 +1,4 @@
 "use client";
-// Event detail client — register-button and voting-preview modes
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -14,7 +13,6 @@ import {
 } from "@/components/ui/dialog";
 import { Loader2, Trophy, ArrowRight } from "lucide-react";
 import { registerTeam } from "@/services/registration-service";
-// Note: registerTeam tetap di registration-service karena itu adalah operasi registrasi
 import type { EventDetailVoting } from "@/types/event";
 import Image from "next/image";
 
@@ -42,7 +40,7 @@ export function EventDetailClient(props: EventDetailClientProps) {
 
 // ── Register Button + Modal ───────────────────────────────────────────────────
 
-function RegisterButton({
+export function RegisterButton({
   categoryId,
   eventId,
   categoryName,
